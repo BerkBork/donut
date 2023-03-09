@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../tab/bubble_tea_tab.dart';
+import '../tab/dango_tab.dart';
+import '../tab/donut_tab.dart';
+import '../tab/noodles_tab.dart';
+import '../tab/waffle_tab.dart';
 import '../util/my_tab.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +17,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // my list of tabs
   List<Widget> myTabs = const [
+    //donut tab
+    MyTab(
+      iconPath: 'lib/icons/donut.png',
+    ),
+
     //bubble tea tab
     MyTab(
       iconPath: 'lib/icons/bubble-tea.png',
@@ -27,31 +37,11 @@ class _HomePageState extends State<HomePage> {
       iconPath: 'lib/icons/dango.png',
     ),
 
-    //donut tab
-    MyTab(
-      iconPath: 'lib/icons/donut.png',
-    ),
-
-    //mochi tab
-    MyTab(
-      iconPath: 'lib/icons/mochi.png',
-    ),
-
-    //pizza tab
-    MyTab(
-      iconPath: 'lib/icons/pizza-slice.png',
-    ),
-
     //waffle tab
     MyTab(
       iconPath: 'lib/icons/waffle.png',
     ),
-
-
-
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(left: 24.0),
             child: IconButton(
               icon: Icon(
-                Icons.menu,
+                Icons.menu_rounded,
                 color: Colors.grey[800],
                 size: 36,
               ),
@@ -94,11 +84,12 @@ class _HomePageState extends State<HomePage> {
           children: [
             // I want to eat
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 18.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 36.0, vertical: 18.0),
               child: Row(
                 children: const [
                   Text(
-                    'I want to eat',
+                    'I want to',
                     style: TextStyle(fontSize: 24),
                   ),
                   Text(
@@ -111,13 +102,33 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-    
+
             const SizedBox(height: 24),
-    
+
             // tab bar
-            TabBar(tabs: myTabs)
-    
+            TabBar(tabs: myTabs),
+
             // tab bar view
+            Expanded(
+              child: TabBarView(
+                children: [
+                  // donut page
+                  DonutTab(),
+                  
+                  // bubble tea page
+                  BubbleTeaTab(),
+
+                  // noodles page
+                  NoodlesTab(),
+
+                  // dango page
+                  DangoTab(),
+
+                  // waffle page
+                  WaffleTab(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
